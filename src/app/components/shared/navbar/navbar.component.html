@@ -1,0 +1,55 @@
+<header>
+    <button class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <button [routerLink]="['home']" class="brand-logo">
+        <i class="fas fa-store-alt"></i>
+        <span>Danielitos</span>
+    </button>
+</header>
+<nav class="dashboard-nav-list">
+    <button [routerLink]="['home']" class="dashboard-nav-item">
+        <i class="fas fa-home"></i>Inicio
+    </button>
+    <div class='dashboard-nav-dropdown'>
+        <button class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+            <i class="fas fa-hand-holding-usd"></i> Áreas de Ventas
+        </button>
+        <div class='dashboard-nav-dropdown-menu'>
+            <button [routerLink]="['sales']" class="dashboard-nav-dropdown-item" (click)="createSaleOrder()">Registrar Venta</button>
+            <button href="#" class="dashboard-nav-dropdown-item" (click)="showID()">Buscar Producto</button>
+        </div>
+    </div>
+    <button href="#" class="dashboard-nav-item ">
+        <i class="fas fa-tachometer-alt"></i> Item 1
+    </button>
+    <button href="#" class="dashboard-nav-item">
+        <i class="fas fa-file-upload"></i> Item 2
+    </button>
+    <div class='dashboard-nav-dropdown'>
+        <button href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+            <i class="fas fa-users"></i> Scroll Menu 2
+        </button>
+        <div class='dashboard-nav-dropdown-menu'>
+            <button href="#" class="dashboard-nav-dropdown-item">Sub Item 1</button>
+            <button href="#" class="dashboard-nav-dropdown-item">Sub Item 2</button>
+            <button href="#" class="dashboard-nav-dropdown-item">Sub Item 3</button>
+            <button href="#" class="dashboard-nav-dropdown-item">Sub Item 4</button>
+            <button href="#" class="dashboard-nav-dropdown-item">Sub Item 5</button>
+        </div>
+    </div>
+    <div class='dashboard-nav-dropdown'>
+        <button href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle">
+            <i class="fas fa-money-check-alt"></i> Scroll Menu 3
+        </button>
+        <div class='dashboard-nav-dropdown-menu'>
+            <button href="#" class="dashboard-nav-dropdown-item">Sub Item 1</button>
+            <button href="#" class="dashboard-nav-dropdown-item">Sub Item 2</button>
+            <button href="#" class="dashboard-nav-dropdown-item">Sub Item 3</button>
+        </div>
+    </div>
+    <div class="nav-item-divider"></div>
+    <button href="#" class="dashboard-nav-item">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+</nav>

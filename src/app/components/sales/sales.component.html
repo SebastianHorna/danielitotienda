@@ -1,0 +1,113 @@
+<div class="sales-container">
+    <div class="sales-item 1 text-center">
+        <div class="card">
+            <h4 class="card-header"><strong>Información del Cliente:</strong> </h4>
+            <div class="card-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <span for="inputName">Nombre: </span>
+                            <input type="text" class="form-control" id="inputName">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <span for="inputDNI">DNI: </span>
+                            <input type="text" class="form-control" id="inputDNI">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="sales-item 2">
+        <div class="card">
+            <div class="card-header">Menú Cliente</div>
+            <div class="card-body text-center">
+                <button (click)="searchClientRedirect()" type="button" class="btn btn-dark m-2 mt-3 mb-3">Buscar</button>
+                <button class="btn btn-dark m-2 mt-3 mb-3">Modificar</button>
+            </div>
+        </div>
+    </div>
+    <div class="sales-item 3">
+        <div class="card">
+            <div class="card-header"><strong>Lista de Productos:</strong> </div>
+            <div class="card-body text-center">
+                <table class="table table-bordered table-striped">
+                    <thead class="headSalesForm">
+                        <tr class="bg-dark">
+                            <th class="thTableSearchProduct" scope="col">#</th>
+                            <th class="thTableSearchProduct" scope="col">Categoría</th>
+                            <th class="thTableSearchProduct" scope="col">Marca</th>
+                            <th class="thTableSearchProduct" scope="col">Talla</th>
+                            <th class="thTableSearchProduct" scope="col">Cantidad</th>
+                            <th class="thTableSearchProduct" scope="col">Precio</th>
+                            <th class="thTableSearchProduct" scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td> unidad </td>
+                            <td> S/.16 </td>
+                            <td> Precio unitario </td>
+                            <td> 2 </td>
+                            <td> 3 </td>
+                            <td>4 </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td> unidad </td>
+                            <td> S/.16 </td>
+                            <td> Precio unitario </td>
+                            <td> 2 </td>
+                            <td> 3 </td>
+                            <td>4 </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td> unidad </td>
+                            <td> S/.16 </td>
+                            <td> Precio unitario </td>
+                            <td> 2 </td>
+                            <td> 3 </td>
+                            <td>4 </td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td> unidad </td>
+                            <td> S/.16 </td>
+                            <td> Precio unitario </td>
+                            <td> 2 </td>
+                            <td> 3 </td>
+                            <td>4 </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">Total</td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="sales-item 4">
+        <div class="card">
+            <div class="card-header">Menú Detalle de Pedido</div>
+            <div class="card-body text-center">
+                <button (click)="salesDetailRedirect()" class="btn btn-dark m-2 mt-3">Agregar</button>
+                <button class="btn btn-dark m-2 mt-3">Modificar</button>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-dark mb-4">Eliminar</button>
+            </div>
+        </div>
+    </div>
+    <div class="sales-item 5">
+        <div class="card">
+            <div class="card-header">Menú Pedido</div>
+            <div class="card-body text-center">
+                <button class="btn btn-dark m-2 mt-3">Guardar</button>
+                <button class="btn btn-dark m-2 mt-3">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>

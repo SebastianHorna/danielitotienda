@@ -1,0 +1,219 @@
+<!-- <h3 class="text-center">Agregar Producto a Pedido de Venta</h3> -->
+<div class="sales-detail-container">
+    <div class="sales-detail-item 1">
+        <div class="card">
+            <h4 class="card-header">Buscar Producto:</h4>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-control" id="category" name="category" required (change)="selectCategory($event)">
+                                <option>Categoria</option>
+                                <option *ngFor="let category of categories" [value]="category.idCategory">{{ category.name }}</option>                           
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Marca</option>
+                                <option *ngFor="let brand of brands" [value]="brand.idBrand">{{ brand.name }}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Talla</option>
+                                <option *ngFor="let size of sizes" [value]="size.idSize">{{ size.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="sales-detail-item 2">
+        <div class="card">
+            <div class="card-header"><strong>Productos que coinciden con la búsqueda:</strong> </div>
+            <div class="card-body">
+                <div class="row tableSearchProduct text-center">
+                    <table class="table table-bordered table-striped">
+                        <thead class="headSalesForm">
+                            <tr class="bg-dark">
+                                <th class="thTableSearchProduct" scope="col">#</th>
+                                <th class="thTableSearchProduct" scope="col">Producto</th>
+                                <th class="thTableSearchProduct" scope="col">Marca</th>
+                                <th class="thTableSearchProduct" scope="col">Talla</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let selectC of Clothesre">
+                                <td> 1 </td>
+                                <td> {{selectC.idCategory}} </td>
+                                <td> {{selectC.idBrand}} </td>
+                                <td> {{selectC.idSize}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sales-detail-item 3">
+        <div class="card">
+            <div class="card-header"><strong>Precios del producto seleccionado:</strong> </div>
+            <div class="card-body ">
+                <div class="row text-center table-produt-prices">
+                    <table class="table table-bordered table-striped">
+                        <thead class="headSalesForm">
+                            <tr class="bg-dark">
+                                <th class="thTableSearchProduct" scope="col">#</th>
+                                <th class="thTableSearchProduct" scope="col">Tipo</th>
+                                <th class="thTableSearchProduct" scope="col">Monto</th>
+                                <th class="thTableSearchProduct" scope="col">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td> unidad </td>
+                                <td> S/.16 </td>
+                                <td> Precio unitario </td>
+
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td> unidad </td>
+                                <td> S/.16 </td>
+                                <td> Precio unitario </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td> unidad </td>
+                                <td> S/.16 </td>
+                                <td> Precio unitario </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td> unidad </td>
+                                <td> S/.16 </td>
+                                <td> Precio unitario </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sales-detail-item 4">
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-group row mt-3">
+                        <label for="colFormLabel" class="col-sm-4 col-form-label">Cantidad actual:</label>
+                        <div class="col-sm-2 mr-2">
+                            <input type="text" class="form-control" id="full-name-client" name="full-name-client">
+                        </div>
+                        <button (click)="salesRedirect()" class="btn btn-dark ml-5">Confirmar</button>
+                    </div>
+                    <div class="form-group row mt-3">
+                        <label for="colFormLabel" class="col-sm-4 col-form-label">Cantidad para vender: </label>
+                        <div class="col-sm-2 mr-2">
+                            <input type="text" class="form-control" id="DNI-client" name="DNI-client">
+                        </div>
+                        <button (click)="salesRedirect()" class="btn btn-dark ml-5">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container">
+    <div class="row">
+        <div class="col search-product">
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <select class="form-control" id="category" name="category" required (change)="selectCategory($event)">
+                                <option>Categoria</option>
+                                <option *ngFor="let category of categories" [value]="category.idCategory">{{ category.name }}</option>                           
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Marca</option>
+                                <option *ngFor="let brand of brands" [value]="brand.idBrand">{{ brand.name }}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option>Talla</option>
+                                <option *ngFor="let size of sizes" [value]="size.idSize">{{ size.name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col text-center">
+                            <span>Productos que coinciden con la búsqueda:</span>
+                        </div>
+                    </div>
+                    <div class="row tableSearchProduct mt-3 text-center">
+                        <table class="table table-bordered table-striped">
+                            <thead class="headSalesForm">
+                                <tr class="bg-dark">
+                                    <th class="thTableSearchProduct" scope="col">#</th>
+                                    <th class="thTableSearchProduct" scope="col">Producto</th>
+                                    <th class="thTableSearchProduct" scope="col">Marca</th>
+                                    <th class="thTableSearchProduct" scope="col">Talla</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let selectC of Clothesre">
+                                    <td> 1 </td>
+                                    <td> {{selectC.idCategory}} </td>
+                                    <td> {{selectC.idBrand}} </td>
+                                    <td> {{selectC.idSize}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col prices-view">
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <span>Precios del producto:</span>
+                </div>
+            </div>
+            <div class="row text-center mt-3">
+                <table class="table table-bordered table-striped">
+                    <thead class="headSalesForm">
+                        <tr class="bg-dark">
+                            <th class="thTableSearchProduct" scope="col">#</th>
+                            <th class="thTableSearchProduct" scope="col">Tipo</th>
+                            <th class="thTableSearchProduct" scope="col">Monto</th>
+                            <th class="thTableSearchProduct" scope="col">Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td> unidad </td>
+                            <td> S/.16 </td>
+                            <td> Precio unitario </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <span>Cantidad Actual: </span>
+                <input type="text">
+                <button (click)="salesRedirect()" class="btn btn-dark">Confirmar</button>
+            </div>
+            <div class="row">
+                <span>Cantidad a Vender: </span>
+                <input class="" type="text">
+                <button (click)="salesRedirect()" class="btn btn-dark">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div> -->
