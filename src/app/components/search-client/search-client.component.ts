@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClientModel } from 'src/models/customer-support/sale-order/model.client';
 import { ClientService } from '../../../services/customer-support/sale-order/client/client.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-search-client',
@@ -21,34 +22,42 @@ export class SearchClientComponent implements OnInit {
   constructor(
     private router: Router,
     private _http: HttpClient,
-    private _clientService: ClientService
+    public _clientService: ClientService
   ) {}
 
   ngOnInit(): void {}
 
   salesRedirect() {
-    this._selectedRowIndex===-1 ? 'Error!: Seleccione primero una fila de la tabla': this.router.navigate(['/sales']);
+    // this._clientService._client = this_cli
+    this.router.navigate(['/sales']);
   }
 
   _fGetClients(_name: string, _DNI: string) {
     _name = _name ? _name : 'null';
     _DNI = _DNI ? _DNI : 'null';
-    console.log(this._selectedRowIndex)
+    console.log(this._clientService._client);
+    // console.log(this._selectedRowIndex)
+    // console.log(this._clientService._selectedRowIndex);
+    // this._selectedRowIndex = -1
+    this._clientService._selectedRowIndex = -1;
+    // console.log(this._clientService._selectedRowIndex)
     this._clientService
       .readByNameDNI(_name, _DNI)
       .subscribe((_resultClient) => {
         this._clients = _resultClient;
-        // this._selectedRowIndex = 
+        // this._selectedRowIndex =
       });
   }
 
-  _fClickedRow(row: any) {
-    this._clickedRow = row;
-    console.log(this._clickedRow);
+  highlight(row: ClientModel, i: number) {
+    // this._selectedRowIndex = i;
+    // console.log(row, typeof row)
+    this._clientService._client = row;
+    this._clientService._selectedRowIndex = i;
+    // console.log(this._clientService._selectedRowIndex);
   }
-
-  highlight(row: any, i: any) {
-    this._selectedRowIndex = i;
-    // console.log(i,this._selectedRowIndex)
+  hola:string = 'asdf'
+  submit(form:NgForm){
+    console.log(form)
   }
 }

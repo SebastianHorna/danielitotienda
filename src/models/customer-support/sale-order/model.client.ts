@@ -6,4 +6,6 @@ export class ClientModel {
   '_cel': string;
   '_shipping': boolean;
   '_RUC': string;
+  'createdAt': string;
+  'updatedAt': string;
 }

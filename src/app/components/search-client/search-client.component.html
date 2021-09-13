@@ -2,26 +2,50 @@
   <div class="row justify-content-center m-2">
     <h2>Menú de Buscar Cliente</h2>
   </div>
-  <div class="row justify-content-center">
-    <div class="form-group col-md-5">
-      <input
-        #clientName
-        type="text"
-        class="form-control"
-        placeholder="Nombre..."
-        (keyup)="_fGetClients(clientName.value, clientDNI.value)"
-      />
+
+  <form autocomplete="off">
+    <div class="row justify-content-center">
+      <div class="form-group col-md-5">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nombre..."
+          ngModel
+          name="clientName"
+          #clientName="ngModel"
+          [maxlength]="30"
+          pattern="[a-zA-Z ?]+"
+          [class.is-invalid]="clientName.invalid"
+          (keyup)="_fGetClients(clientName.value, clientDNI.value)"
+        />
+        <div class="container-small">
+          <small *ngIf="clientName.invalid" class="form-text text-danger"
+            >No números y texto no mayor de 40 caracteres</small
+          >
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="DNI..."
+          ngModel
+          name="DNI"
+          #clientDNI="ngModel"
+          [maxlength]="8"
+          pattern="[d]{0,8}"
+          [class.is-invalid]="clientDNI.invalid"
+          (keyup)="_fGetClients(clientName.value, clientDNI.value)"
+        />
+        <div class="container-small">
+          <small *ngIf="clientDNI.invalid" class="form-text text-danger"
+            >Solo números hasta 8 dígitos</small
+          >
+        </div>
+      </div>
     </div>
-    <div class="form-group col-md-2">
-      <input
-        #clientDNI
-        type="text"
-        class="form-control"
-        placeholder="DNI..."
-        (keyup)="_fGetClients(clientName.value, clientDNI.value)"
-      />
-    </div>
-  </div>
+  </form>
+
   <div class="card mt-3">
     <h5 class="card-header"><strong>Lista de Clientes:</strong></h5>
     <div class="card-body">
@@ -64,7 +88,9 @@
             <tr
               mat-row
               *matRowDef="let row; columns: _displayedColumns; let i = index"
-              [ngClass]="{ highlight: i === _selectedRowIndex }"
+              [ngClass]="{
+                highlight: i === this._clientService._selectedRowIndex
+              }"
               (click)="highlight(row, i)"
             ></tr>
           </table>
@@ -75,8 +101,10 @@
       <div class="col text-center">
         <button
           (click)="salesRedirect()"
-          class="btn btn-dark m-2 "
-          [attr.disabled]="_selectedRowIndex===-1?false:null"
+          class="btn btn-dark m-2"
+          [attr.disabled]="
+            this._clientService._selectedRowIndex === -1 ? false : null
+          "
         >
           Agregar Cliente Seleccionado
         </button>

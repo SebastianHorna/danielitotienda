@@ -8,6 +8,18 @@ import { fullUris } from './client.keys';
 })
 export class ClientService {
   private _fullUris = fullUris;
+  _selectedRowIndex: number = -1;
+  _client: ClientModel = {
+    _id: '',
+    _DNI: '',
+    _name: '',
+    _address: '',
+    _cel: '',
+    _shipping: true,
+    _RUC: '',
+    createdAt: '',
+    updatedAt: '',
+  };
 
   constructor(private http: HttpClient) {}
 

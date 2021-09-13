@@ -1,6 +1,9 @@
-// import { general } from '../general.keys';
-// const _mainUri = general._mainUri;
+import { _productManagement } from '../product-management.keys';
+const _distribution = _productManagement._distribution;
 
-// const _particularUri = '/headquarter';
-
-// export const _customerSupport = _mainUri + _particularUri;
+export const _distributionUris = {
+  _brand: _distribution + '/brand',
+  _category: _distribution + '/category',
+  _product: _distribution + '/product',
+  _size: _distribution + '/size',
+};

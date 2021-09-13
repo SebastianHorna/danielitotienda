@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 //Routes
 import { APP_ROUTING } from './app.routes';
@@ -41,6 +41,7 @@ import { RegisterModifyClientComponent } from './components/Modal/register-modif
     APP_ROUTING,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     MatSliderModule,
     MatButtonModule,
     MatTableModule,
