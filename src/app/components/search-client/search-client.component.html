@@ -14,7 +14,7 @@
           name="clientName"
           #clientName="ngModel"
           [maxlength]="30"
-          pattern="[a-zA-Z ?]+"
+          pattern="[a-zA-Záéíóúñ ?]+"
           [class.is-invalid]="clientName.invalid"
           (keyup)="_fGetClients(clientName.value, clientDNI.value)"
         />
@@ -33,12 +33,14 @@
           name="DNI"
           #clientDNI="ngModel"
           [maxlength]="8"
-          pattern="[d]{0,8}"
+          pattern="[\d]{0,8}"
           [class.is-invalid]="clientDNI.invalid"
           (keyup)="_fGetClients(clientName.value, clientDNI.value)"
         />
         <div class="container-small">
-          <small *ngIf="clientDNI.invalid" class="form-text text-danger"
+          <small
+            *ngIf="clientDNI.invalid || clientDNI.value.length === 8"
+            class="form-text text-danger"
             >Solo números hasta 8 dígitos</small
           >
         </div>
@@ -64,8 +66,8 @@
 
             <ng-container matColumnDef="_RUC">
               <th mat-header-cell *matHeaderCellDef>RUC</th>
-              <td mat-cell *matCellDef="let _element; let i = index">
-                {{ _element._RUC }}{{ i }}
+              <td mat-cell *matCellDef="let _element">
+                {{ _element._RUC }}
               </td>
             </ng-container>
 

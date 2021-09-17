@@ -4,38 +4,53 @@
     <div class="card">
       <h4 class="card-header">Buscar Producto:</h4>
       <div class="card-body">
-        <form>
-          <div class="row">
-            <div class="col">
+        <form autocomplete="off">
+          <div class="row justify-content-center">
+            <div class="form-group col-md-5">
               <select
                 class="form-control"
-                id="category"
-                name="category"
-                required
-                (change)="selectCategory($event)"
+                name="_category"
+                ngModel
+                
+                #_category="ngModel"
+                (ngModelChange)="_fSelectedCategory($event)"
               >
-                <option>Categoria</option>
+                <option disabled selected value="">Categoria</option>
                 <option
-                  *ngFor="let category of categories"
-                  [value]="category.idCategory"
+                  *ngFor="let _category of _categories"
+                  [value]="_category._id"
                 >
-                  {{ category.name }}
+                  {{ _category._name }}
                 </option>
               </select>
             </div>
-            <div class="col">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Marca</option>
-                <option *ngFor="let brand of brands" [value]="brand.idBrand">
-                  {{ brand.name }}
+
+            <div class="form-group col-md-3">
+              <select
+                class="form-control"
+                name="_brand"
+                ngModel
+                #_brand="ngModel"
+                (ngModelChange)="_fSelectedBrand($event)"
+              >
+                <option disabled selected value="">Marca</option>
+                <option *ngFor="let _brand of _brands" [value]="_brand._id">
+                  {{ _brand._name }}
                 </option>
               </select>
             </div>
-            <div class="col">
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Talla</option>
-                <option *ngFor="let size of sizes" [value]="size.idSize">
-                  {{ size.name }}
+
+            <div class="form-group col-md-2">
+              <select
+                class="form-control"
+                name="_category"
+                ngModel
+                #_category="ngModel"
+                (ngModelChange)="_fSelectedSize($event)"
+              >
+                <option disabled selected value="">Talla</option>
+                <option *ngFor="let _size of _sizes" [value]="_size._id">
+                  {{ _size._name }}
                 </option>
               </select>
             </div>
@@ -50,25 +65,51 @@
         <strong>Productos que coinciden con la búsqueda:</strong>
       </div>
       <div class="card-body">
-        <div class="row tableSearchProduct text-center">
-          <table class="table table-bordered table-striped">
-            <thead class="headSalesForm">
-              <tr class="bg-dark">
-                <th class="thTableSearchProduct" scope="col">#</th>
-                <th class="thTableSearchProduct" scope="col">Categoría</th>
-                <th class="thTableSearchProduct" scope="col">Marca</th>
-                <th class="thTableSearchProduct" scope="col">Talla</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let selectC of Clothesre">
-                <td>1</td>
-                <td>{{ selectC.idCategory }}</td>
-                <td>{{ selectC.idBrand }}</td>
-                <td>{{ selectC.idSize }}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="row">
+          <div class="example-container">
+            <table mat-table [dataSource]="_products">
+              <ng-container matColumnDef="_category">
+                <th mat-header-cell *matHeaderCellDef>Categoría</th>
+                <td mat-cell *matCellDef="let _element">
+                  {{ _element._product._category._name }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="_brand">
+                <th mat-header-cell *matHeaderCellDef>Marca</th>
+                <td mat-cell *matCellDef="let _element">
+                  <!-- {{ _element._product._brand._name }} -->
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="_size">
+                <th mat-header-cell *matHeaderCellDef>Talla</th>
+                <td mat-cell *matCellDef="let _element">
+                  {{ _element._product._size._name }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="_stock">
+                <th mat-header-cell *matHeaderCellDef>Stock</th>
+                <td mat-cell *matCellDef="let _element">
+                  {{ _element._product._stock }}
+                </td>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="_displayedColumns; sticky: true"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: _displayedColumns; let i = index"
+                [ngClass]="{
+                  highlight: i === this._productHService._selectedRowIndex
+                }"
+                (click)="highlight(row, i)"
+              ></tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -253,3 +294,16 @@
         </div>
     </div>
 </div> -->
+<!-- <select
+          class="form-control"
+          id="category"
+          name="category"
+        >
+          <option>Categoria</option>
+          <option
+            *ngFor="let _category of _categories"
+            [value]="_category._id"
+          >
+            {{ _category._name }}
+          </option>
+        </select> -->

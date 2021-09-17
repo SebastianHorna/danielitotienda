@@ -56,8 +56,8 @@ export class SearchClientComponent implements OnInit {
     this._clientService._selectedRowIndex = i;
     // console.log(this._clientService._selectedRowIndex);
   }
-  hola:string = 'asdf'
-  submit(form:NgForm){
-    console.log(form)
+  hola: string = 'asdf';
+  submit(form: NgForm) {
+    console.log(form);
   }
 }
