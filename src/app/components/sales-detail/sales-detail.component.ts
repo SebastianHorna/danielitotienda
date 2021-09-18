@@ -30,12 +30,18 @@ export class SalesDetailComponent implements OnInit {
 
   // result of the searching
   _products: any = [];
+  _pricesSelectedProduct: any = [];
 
   // table column name
-  _displayedColumns: string[] = ['_category', '_brand', '_size', '_stock'];
+  _displayedColumnsProducts: string[] = ['_category', '_brand', '_size'];
+  _displayedColumnsPrices: string[] = [
+    '_nameKindPrice',
+    '_amountPrice',
+    '_drescriptionKindPrice',
+  ];
 
   // selected table row
-  _selectedProduct: any;
+  _selectedProduct: any = { _stock: '' };
 
   constructor(
     private router: Router,
@@ -62,6 +68,10 @@ export class SalesDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  _prepareSelectedProduct() {
+    return { _stock: '' };
+  }
 
   _prepareSelectedCategory() {
     this._selectedCategory =
@@ -97,7 +107,10 @@ export class SalesDetailComponent implements OnInit {
     this._prepareSelectedCategory();
     this._prepareSelectedBrand();
     this._prepareSelectedSize();
-    this._productHService._selectedRowIndex = -1
+
+    //reseting values
+    this._productHService._selectedRowIndex = -1;
+    this._selectedProduct = this._prepareSelectedProduct();
   }
 
   // each time user select a category, brand or size will get a
@@ -116,12 +129,12 @@ export class SalesDetailComponent implements OnInit {
         console.log(this._products);
         // this._selectedRowIndex =
       });
-    console.log(
-      'COMPONENT:',
-      this._selectedBrand,
-      this._selectedCategory,
-      this._selectedSize
-    );
+    // console.log(
+    //   'COMPONENT:',
+    //   this._selectedBrand,
+    //   this._selectedCategory,
+    //   this._selectedSize
+    // );
   }
 
   _fSelectedCategory(_idCategory: string) {
@@ -142,9 +155,19 @@ export class SalesDetailComponent implements OnInit {
     // console.log('Selected Size', _idSize);
   }
 
+  _fGetPricesSelectedProduct() {
+    // get all the prices and render in the table
+  }
+
   highlight(row: any, i: number) {
     this._productHService._selectedRowIndex = i;
+    this._selectedProduct = row;
+    this._fGetPricesSelectedProduct();
     console.log('FUCKKK UU ROWW', row);
+  }
+
+  setAmount(amountSell: any) {
+    console.log(amountSell.min);
   }
 
   salesRedirect() {

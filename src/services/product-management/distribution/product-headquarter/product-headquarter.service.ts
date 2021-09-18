@@ -34,7 +34,7 @@ export class ProductHeadquarterService {
     return this.http.get(_uri);
   }
 
-  red() {
+  red() { 
     console.log(this._fullUris);
     return this.http.get(this._fullUris._read);
   }

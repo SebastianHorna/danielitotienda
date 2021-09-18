@@ -11,7 +11,6 @@
                 class="form-control"
                 name="_category"
                 ngModel
-                
                 #_category="ngModel"
                 (ngModelChange)="_fSelectedCategory($event)"
               >
@@ -98,11 +97,15 @@
 
               <tr
                 mat-header-row
-                *matHeaderRowDef="_displayedColumns; sticky: true"
+                *matHeaderRowDef="_displayedColumnsProducts; sticky: true"
               ></tr>
               <tr
                 mat-row
-                *matRowDef="let row; columns: _displayedColumns; let i = index"
+                *matRowDef="
+                  let row;
+                  columns: _displayedColumnsProducts;
+                  let i = index
+                "
                 [ngClass]="{
                   highlight: i === this._productHService._selectedRowIndex
                 }"
@@ -120,43 +123,48 @@
         <strong>Precios del producto seleccionado:</strong>
       </div>
       <div class="card-body">
-        <div class="row text-center table-produt-prices">
-          <table class="table table-bordered table-striped">
-            <thead class="headSalesForm">
-              <tr class="bg-dark">
-                <th class="thTableSearchProduct" scope="col">#</th>
-                <th class="thTableSearchProduct" scope="col">Tipo</th>
-                <th class="thTableSearchProduct" scope="col">Monto</th>
-                <th class="thTableSearchProduct" scope="col">Descripción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>unidad</td>
-                <td>S/.16</td>
-                <td>Precio unitario</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>unidad</td>
-                <td>S/.16</td>
-                <td>Precio unitario</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>unidad</td>
-                <td>S/.16</td>
-                <td>Precio unitario</td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>unidad</td>
-                <td>S/.16</td>
-                <td>Precio unitario</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="row">
+          <div class="example-container">
+            <table mat-table [dataSource]="_pricesSelectedProduct">
+              <ng-container matColumnDef="_nameKindPrice">
+                <th mat-header-cell *matHeaderCellDef>Tipo precio</th>
+                <td mat-cell *matCellDef="let _element">
+                  {{ _element._product._category._name }}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="_amountPrice">
+                <th mat-header-cell *matHeaderCellDef>Monto</th>
+                <td mat-cell *matCellDef="let _element">
+                  <!-- {{ _element._product._brand._name }} -->
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="_drescriptionKindPrice">
+                <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+                <td mat-cell *matCellDef="let _element">
+                  {{ _element._product._size._name }}
+                </td>
+              </ng-container>
+
+              <tr
+                mat-header-row
+                *matHeaderRowDef="_displayedColumnsPrices; sticky: true"
+              ></tr>
+              <tr
+                mat-row
+                *matRowDef="
+                  let row;
+                  columns: _displayedColumnsPrices;
+                  let i = index
+                "
+                [ngClass]="{
+                  highlight: i === this._productHService._selectedRowIndex
+                }"
+                
+              ></tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -165,16 +173,17 @@
     <div class="card">
       <div class="card-body">
         <form>
-          <div class="form-group row mt-3">
+          <div class="form-group row">
             <label for="colFormLabel" class="col-sm-4 col-form-label"
               >Cantidad actual:</label
             >
-            <div class="col-sm-2 mr-2">
+            <div class="col-sm-2">
               <input
                 type="text"
                 class="form-control"
-                id="full-name-client"
-                name="full-name-client"
+                disabled
+                name="_amountPrice"
+                [ngModel]="this._selectedProduct._stock"
               />
             </div>
             <button (click)="salesRedirect()" class="btn btn-dark ml-5">
@@ -185,12 +194,15 @@
             <label for="colFormLabel" class="col-sm-4 col-form-label"
               >Cantidad para vender:
             </label>
-            <div class="col-sm-2 mr-2">
+            <div class="col-sm-2 ">
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 id="DNI-client"
-                name="DNI-client"
+                #amountSell
+                min="10"
+                max="12"
+                (keyup)="setAmount(amountSell)"
               />
             </div>
             <button (click)="salesRedirect()" class="btn btn-dark ml-5">

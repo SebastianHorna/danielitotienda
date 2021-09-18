@@ -6,4 +6,6 @@ export const _productUris = {
   _category: _product + '/category',
   _product: _product + '/product',
   _size: _product + '/size',
+  _price: _product + '/price',
+  _kindPrice: _product + '/kindPrice',
 };
