@@ -1,4 +1,5 @@
 <div class="sales-container">
+  <!-- CLIENT -->
   <div class="sales-item 1 text-center">
     <div class="card">
       <h4 class="card-header"><strong>Información del Cliente:</strong></h4>
@@ -35,6 +36,8 @@
       </div>
     </div>
   </div>
+  
+  <!-- MENU CLIENT -->
   <div class="sales-item 2">
     <div class="card">
       <div class="card-header">Menú Cliente</div>
@@ -50,53 +53,70 @@
       </div>
     </div>
   </div>
+  
+  <!-- SALE'S DETAILS -->
   <div class="sales-item 3">
     <div class="card">
       <div class="card-header"><strong>Lista de Productos:</strong></div>
-      <!-- <div class="card-body">
+      <div class="card-body">
         <div class="row">
           <div class="example-container">
-            <table mat-table [dataSource]="_category">
-              <ng-container matColumnDef="_name">
-                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <table class="pointer" mat-table [dataSource]="_detailSO">
+              <ng-container matColumnDef="_category">
+                <th mat-header-cell *matHeaderCellDef>Categoría</th>
                 <td mat-cell *matCellDef="let _element">
-                  {{ _element._name }}
+                  <!-- {{ _element._product._category._name }} -->
                 </td>
               </ng-container>
 
-              <ng-container matColumnDef="_DNI">
-                <th mat-header-cell *matHeaderCellDef>DNI</th>
-                <td mat-cell *matCellDef="let _element">{{ _element._DNI }}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="_RUC">
-                <th mat-header-cell *matHeaderCellDef>RUC</th>
-                <td mat-cell *matCellDef="let _element; let i = index">
-                  {{ _element._RUC }}{{ i }}
+              <ng-container matColumnDef="_brand">
+                <th mat-header-cell *matHeaderCellDef>Marca</th>
+                <td mat-cell *matCellDef="let _element">
+                  <!-- {{ _element._product._brand._name }} -->
                 </td>
               </ng-container>
 
-              <ng-container matColumnDef="_cel">
-                <th mat-header-cell *matHeaderCellDef>Celular</th>
-                <td mat-cell *matCellDef="let _element">{{ _element._cel }}</td>
+              <ng-container matColumnDef="_size">
+                <th mat-header-cell *matHeaderCellDef>Talla</th>
+                <td mat-cell *matCellDef="let _element">
+                  <!-- {{ _element._product._size._name }} -->
+                </td>
               </ng-container>
 
-              <ng-container matColumnDef="_address">
-                <th mat-header-cell *matHeaderCellDef>Dirección</th>
+              <ng-container matColumnDef="_price">
+                <th mat-header-cell *matHeaderCellDef>Cantidad</th>
                 <td mat-cell *matCellDef="let _element">
-                  {{ _element._address }}
+                  <!-- {{ _element._product._stock }} -->
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="_amount">
+                <th mat-header-cell *matHeaderCellDef>Precio</th>
+                <td mat-cell *matCellDef="let _element">
+                  <!-- {{ _element._product._stock }} -->
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="_subtotal">
+                <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+                <td mat-cell *matCellDef="let _element">
+                  <!-- {{ _element._product._stock }} -->
                 </td>
               </ng-container>
 
               <tr
                 mat-header-row
-                *matHeaderRowDef="_displayedColumns; sticky: true"
+                *matHeaderRowDef="_displayedColumnsDetailSO; sticky: true"
               ></tr>
               <tr
                 mat-row
-                *matRowDef="let row; columns: _displayedColumns; let i = index"
+                *matRowDef="
+                  let row;
+                  columns: _displayedColumnsDetailSO;
+                  let i = index
+                "
                 [ngClass]="{
-                  highlight: i === this._clientService._selectedRowIndex
+                  highlight: i === this._detailSOService._selectedRowIndex
                 }"
                 (click)="highlight(row, i)"
               ></tr>
@@ -104,29 +124,10 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col text-center">
-          <button
-            (click)="salesRedirect()"
-            class="btn btn-dark m-2"
-            [attr.disabled]="
-              this._clientService._selectedRowIndex === -1 ? false : null
-            "
-          >
-            Agregar Cliente Seleccionado
-          </button>
-          <app-register-modify-client
-            *ngFor="let modal of modeModal; let i = index"
-            [mode]="modal"
-            [index]="i"
-          ></app-register-modify-client>
-          <button (click)="salesRedirect()" class="btn btn-dark m-2">
-            Cancelar
-          </button>
-        </div>
-      </div> -->
     </div>
   </div>
+  
+  <!-- SALE'S DETAILS MENU -->
   <div class="sales-item 4">
     <div class="card">
       <div class="card-header">Menú Detalle de Pedido</div>
@@ -134,13 +135,15 @@
         <button (click)="salesDetailRedirect()" class="btn btn-dark m-2 mt-3">
           Agregar
         </button>
-        <button class="btn btn-dark m-2 mt-3">Modificar</button>
+        <!-- <button class="btn btn-dark m-2 mt-3">Modificar</button> -->
       </div>
       <div class="text-center">
         <button class="btn btn-dark mb-4">Eliminar</button>
       </div>
     </div>
   </div>
+  
+  <!-- SALE MENU -->
   <div class="sales-item 5">
     <div class="card">
       <div class="card-header">Menú Pedido</div>

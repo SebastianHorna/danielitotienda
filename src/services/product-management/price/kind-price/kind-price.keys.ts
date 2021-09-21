@@ -1,4 +1,4 @@
-import { _productUris } from '../product.keys';
+import { _productUris } from '../price.keys';
 
 const _kindPrice = _productUris._kindPrice;
 

@@ -22,6 +22,7 @@ import { SalesComponent } from './components/sales/sales.component';
 import { SalesDetailComponent } from './components/sales-detail/sales-detail.component';
 import { SearchClientComponent } from './components/search-client/search-client.component';
 import { RegisterModifyClientComponent } from './components/Modal/register-modify-client/register-modify-client.component';
+import { PaySaleOrderComponent } from './components/pay-sale-order/pay-sale-order.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { RegisterModifyClientComponent } from './components/Modal/register-modif
     SalesDetailComponent,
     SearchClientComponent,
     RegisterModifyClientComponent,
+    PaySaleOrderComponent,
   ],
   imports: [
     BrowserModule,

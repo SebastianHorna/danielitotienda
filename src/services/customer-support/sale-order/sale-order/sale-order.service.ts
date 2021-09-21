@@ -9,7 +9,7 @@ import { fullUris } from './sale-order.keys';
 export class SaleOrderService {
   private _fullUris = fullUris;
   _idSaleOrder: string = '';
-
+  
   constructor(private http: HttpClient) {}
 
   create() {
